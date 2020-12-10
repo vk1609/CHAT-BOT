@@ -1,5 +1,7 @@
 # CHAT-BOT
 - The application name is "CHATBOT"
+## Hosting Link of Chatbot
+<a href = "http://3.15.83.13/" >CHATBOT</a>
 ### Description
 - This bot is used to order pizza.
 - We can order pizza by selecting the predefined options.
