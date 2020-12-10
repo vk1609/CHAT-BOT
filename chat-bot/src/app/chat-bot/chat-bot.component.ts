@@ -362,21 +362,27 @@ veg(){
   }
   
   takeOrderId(){
+    var temp = null;
     var orderId=(<HTMLInputElement>document.getElementById('orderId')).value;
     this.removeElementById("mainOrderInputDiv");
   
     console.log(orderId);
      
     this.api.getOrderStatus(orderId).subscribe(data=>{
-      
-      
-      this.createMessage("chatbot",'Your order status is: <br>'+"  "+data[0].status);
+      temp = data;
+      if(data[0]!=undefined){
+        this.createMessage("chatbot",'Your order status is: <br>'+"  "+data[0].status);
       this.createMessage("chatbot","That's It want to go further?");
-        this.createButton(this.options1,1);},error=>console.log(error));
+        this.createButton(this.options1,1);
+      }else{
+        this.createMessage("chatbot","Oh! Sorry I didnt found your ID");
+        this.searchId();
+      }
+      
     
 
         
-     
+    },error=>console.log(error));
   }
 
 
