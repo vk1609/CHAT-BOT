@@ -208,14 +208,14 @@ pushToOrderList(i:number,type:string){
     toRemove.remove();
      }
  vegList=[{
-  name:"Whole Wheat Veggie Pizza",description:"A wonderful crust layered with herbed tomato sauce and toppings encourages my family of six to dig right in to this low-fat main course.",cost:250},
-                   {name:"Tomato-Onion Phyllo Pizza",description:"With a delicate crust and lots of lovely tomatoes on top, this dish is a special one to serve to guests. I make it often when fresh garden tomatoes are in season. It freezes well unbaked.",cost:275},
-                   {name:"Spinach and Artichoke Pizza",description:"My from-scratch pizza has a whole wheat crust flavored with beer. Top it with spinach, artichoke hearts and tomatoes, then add chicken or ham and fresh basil if you want to include meat. ",cost:300}
+  name:"Whole Wheat Veggie Pizza",description:"A pizza with whole wheat.",cost:250},
+                   {name:"Tomato-Onion Phyllo Pizza",description:"A tomato Onion Pizza.",cost:275},
+                   {name:"Spinach and Artichoke Pizza",description:"A spinach and anti choke pizza ",cost:300}
 ];
 
-nonVegList=[{name:"Jerked Chicken Pizza",description:"Indulge in the mouth-watering flavours of spicy Jamaican jerk chicken chunks atop a cheesy pizza, baked to perfection! 'Jerk' refers to the style of cooking wherein the meat, mainly chicken",cost:300},
-                     {name:"Meet Lover Pizza",description:"This one is an absolute crowd pleaser! With a healthy pizza base made with millet and tapioca flour along with soy milk, meat lovers pizza strikes a perfect balance of flavour with tantalising tomato sauce, oodles of mozzarella cheese topped with a host of meats including pepperoni, chicken salami, salami Milano and prosciutto.",cost:325},
-                    {name:"Pepporonie Pizza",description:"Dig in to America's classic pepperoni pizza at home! Pepperoni is one of the most popular American salamis that is bright red, soft, slightly smoky and is most often used as a pizza topping.",cost:300}];
+nonVegList=[{name:"Jerked Chicken Pizza",description:"A chicken pizza",cost:300},
+                     {name:"Meet Lover Pizza",description:"A pizza for meet lovers",cost:325},
+                    {name:"Pepporonie Pizza",description:"A Pepporonie Pizza",cost:300}];
 
 veg(){
         
