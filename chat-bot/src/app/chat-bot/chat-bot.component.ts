@@ -24,7 +24,7 @@ export class ChatBotComponent implements OnInit {
   }
   
 
-  // main function it gets called when send button is pressed
+  
   message(message:any){
     this.data=message.split('');
 console.log(this.data);
@@ -63,15 +63,15 @@ if(message=='hi'||message=='hello'){
  userinput.className="chatarea-inner "+userName;
           
           userinput.innerHTML=message1;
-         // userinput.id="user";
+      
           document.getElementById('message').appendChild(userinput);
 
   }
 
   // options to display
-     options1=["Order Pizza😁","Track Order😊", "Exit"];
-options2=["Veg Pizza🥕🍅","Non Veg Pizza🍗🥕🍅"] ;
-options3=["Looking for another pizza🙃","Confirm it🙁"];
+    options1=["Order Pizza😁","Track Order😊", "Exit"];
+    options2=["Veg Pizza🥕🍅","Non Veg Pizza🍗🥕🍅"] ;
+    options3=["Looking for another pizza🙃","Confirm it🙁"];
 
      // To create button
   createButton(data:any=[],k:number){
@@ -96,10 +96,10 @@ options3=["Looking for another pizza🙃","Confirm it🙁"];
     //function to process first options list i.e. Order Pizza😁 , track your order options 
         startOrdering(i:any){
        if(i==0){
-       /******* */ 
-this.removeElement();
-this.removeElement();
-this.removeElement();
+     
+            this.deleteElement();
+            this.deleteElement();
+            this.deleteElement();
 
            this.createMessage("user","Order Pizza😁");
            
@@ -109,9 +109,9 @@ this.removeElement();
       
        }
        else if(i==1){
-         this.removeElement();
-         this.removeElement();
-         this.removeElement();
+         this.deleteElement();
+         this.deleteElement();
+         this.deleteElement();
          this.createMessage("user","Track Order😊");
           this.searchId();
        }else if(i==2){
@@ -124,21 +124,20 @@ this.removeElement();
      displayPizzaList(i:any){
        if(i==0){
        
-          this.removeElement();
-          this.removeElement();
+          this.deleteElement();
+          this.deleteElement();
 
           this.createMessage("user","Veg Pizza🥕🍅");
           this.veg();
          console.log("for Veg Pizza🥕🍅");
 
          
-       // this.massagedetail()
-       // this. buttonnew1()
+      
        }
        else if(i==1){
 
-        this.removeElement();
-        this.removeElement();
+        this.deleteElement();
+        this.deleteElement();
 
         this.createMessage("user","Non Veg Pizza🍗🥕🍅");
         this.nonVeg();
@@ -152,7 +151,7 @@ pushToOrderList(i:number,type:string){
 
   if(type=="veg"){
   for(let j=0;j<this.vegList.length;j++){
-  this.removeElement();
+  this.deleteElement();
   }
   var str='<br><b>'+this.vegList[i].name+'</b>';
   this.createMessage('user',str);
@@ -162,7 +161,7 @@ pushToOrderList(i:number,type:string){
     else if (type=="nonveg"){
 
       for(let j=0;j<this.nonVegList.length;j++){
-  this.removeElement();
+  this.deleteElement();
   }
   var str='<br><b>'+this.nonVegList[i].name+'</b>';
   this.createMessage('user',str);
@@ -176,8 +175,8 @@ pushToOrderList(i:number,type:string){
           // This function is for "Looking for another pizza🙃 and Confirm it🙁" processes
           displayOrderdescription(i:number){
 
-            this.removeElement();
-        this.removeElement();
+            this.deleteElement();
+        this.deleteElement();
         if(i==0){
                 this.createButton(this.options2,2);
 
@@ -190,38 +189,38 @@ pushToOrderList(i:number,type:string){
             }
             str+='</b><br> Total cost is: <b>'+totalcost+ '</b>';
             this.createMessage("chatbot",str);
-             this.createMessage("chatbot","Enter Your description");
+            alert('Every thing is fine upto now.')
+             this.createMessage("chatbot","Enter Your details");
              this.userdetailsInput();
 
         }
 
 }
 
-     removeElement(){
+     deleteElement(){
     const toRemove=  document.getElementById("user1");
     toRemove.parentElement.removeChild(toRemove);
      }
       
-     removeElementById(str:string){
+     deleteElementById(str:string){
 
     const toRemove=  document.getElementById(str);
     toRemove.remove();
      }
  vegList=[{
-  name:"Whole Wheat Veggie Pizza",description:"A pizza with whole wheat.",cost:250},
-                   {name:"Tomato-Onion Phyllo Pizza",description:"A tomato Onion Pizza.",cost:275},
-                   {name:"Spinach and Artichoke Pizza",description:"A spinach and anti choke pizza ",cost:300}
+  name:"Whole Wheat Veggie Pizza",description:"A whole wheat pizza.",cost:250},
+                   {name:"Tomato-Onion Phyllo Pizza",description:"A tomato onion pizza.",cost:275},
+                   {name:"Spinach and Artichoke Pizza",description:"A pizza for meet lovers ",cost:300}
 ];
 
-nonVegList=[{name:"Jerked Chicken Pizza",description:"A chicken pizza",cost:300},
+nonVegList=[{name:"Jerked Chicken Pizza",description:"A chicken Pizza",cost:300},
                      {name:"Meet Lover Pizza",description:"A pizza for meet lovers",cost:325},
-                    {name:"Pepporonie Pizza",description:"A Pepporonie Pizza",cost:300}];
-
+                    {name:"Pepporonie Pizza",description:"A pepporonie pizza",cost:400}];
 veg(){
         
      for(let i=0;i<this.vegList.length;i++){
       var btn=document.createElement('button');
-      btn.innerHTML='<b>'+this.vegList[i].name+'</b><br><p>'+this.vegList[i].description+'<br><br>  cost: '+this.vegList[i].cost+'<br></p>';
+      btn.innerHTML='<b>'+this.vegList[i].name+'</b><p>'+this.vegList[i].cost+'<br></p>';
       btn.id="user1";
       btn.addEventListener("click", (e:Event) => this.pushToOrderList(i,"veg"));
       btn.className="chatarea-inner btn";
@@ -232,7 +231,7 @@ veg(){
     nonVeg(){
       for(let i=0;i<this.nonVegList.length;i++){
       var btn=document.createElement('button');
-      btn.innerHTML='<b>'+this.nonVegList[i].name+'</b><br><p>'+this.nonVegList[i].description+'<br><br>  cost: '+this.nonVegList[i].cost+'<br></p>';
+      btn.innerHTML='<b>'+this.nonVegList[i].name+'</b><br>  cost: '+this.nonVegList[i].cost+'<br></p>';
       btn.id="user1";
       btn.addEventListener("click", (e:Event) => this.pushToOrderList(i,"nonveg"));
       btn.className="chatarea-inner btn";
@@ -254,7 +253,7 @@ veg(){
 
     
     var inputTag2=document.createElement('input');
-     inputTag2.placeholder="Enter contact no";
+     inputTag2.placeholder="Enter mobile number no";
     inputTag2.id="mobile";
     document.getElementById("userDiv").appendChild(inputTag2);
 
@@ -279,18 +278,24 @@ veg(){
     var name=(<HTMLInputElement>document.getElementById('name')).value;
     var mobile=(<HTMLInputElement>document.getElementById('mobile')).value;
     var address=(<HTMLInputElement>document.getElementById('address')).value;
-    var test=Number(mobile);
+    const regex1 = "^[0-9]*$";
+    var pattern = new RegExp(regex1);
+    var isValid = pattern.test(mobile);
+
+    var notAnumber=Number(mobile);
+
+
 
     if(name.length==0 || mobile.length==0 || address.length==0){
-       this.removeElementById("userDiv");
+       this.deleteElementById("userDiv");
       this.createMessage("chatbot","Please enter all the details");
         this.userdetailsInput();
     }
     else{
 
-    if(mobile.length!==10 || isNaN(test) ){
-      this.removeElementById("userDiv");
-       
+    if(mobile.length!==10 || isNaN(notAnumber) || isValid ){
+      this.deleteElementById("userDiv");
+       alert('It was wrong, please enter again')
         this.createMessage("chatbot","Pleas enter correct mobile number");
         this.userdetailsInput();
     }
@@ -299,7 +304,7 @@ veg(){
   this.userInfo[1]=mobile;
   this.userInfo[2]=address;
       console.log("User description"+ name, mobile,address);
-    this.removeElementById('userDiv');
+    this.deleteElementById('userDiv');
     
     
     //show user details
@@ -311,7 +316,7 @@ veg(){
       var random=Math.floor(Math.random() * (9 * (Math.pow(10, 5)))) + (Math.pow(10, 5));
       var orderId=random;
       
-      var str='Your Order Id: '+orderId+"<br> Your Orders description:";
+      var str='Your Order Id: '+orderId+"<br> Your Orders details:";
       var totalcost=0;
             for(let j=0;j<this.cart.length;j++){
               str+='<br><b>'+(j+1)+": "+this.cart[j].name;
@@ -322,13 +327,13 @@ veg(){
               this.cart=[];
             this.createMessage("chatbot" ,  "You confirmed the order. Hurray! ");
 
-            /************************************/
+          
            this.api.userdetailsIntoDb(this.userInfo[0],Number(this.userInfo[1]),this.userInfo[2]).subscribe( data =>{
           
         },
         error => console.log(error));
-           /******************************* */
-           //to put order id and status in database
+          
+           //Insert order id and status into dabase
            this.api.orderIntoDb(Number(orderId)," ").subscribe( data =>{
         },
         error => console.log(error));
@@ -362,14 +367,14 @@ veg(){
   }
   
   takeOrderId(){
-    var temp = null;
+    var temp =null;
     var orderId=(<HTMLInputElement>document.getElementById('orderId')).value;
-    this.removeElementById("mainOrderInputDiv");
+    this.deleteElementById("mainOrderInputDiv");
   
     console.log(orderId);
      
     this.api.getOrderStatus(orderId).subscribe(data=>{
-      temp = data;
+      temp=data;
       if(data[0]!=undefined){
         this.createMessage("chatbot",'Your order status is: <br>'+"  "+data[0].status);
       this.createMessage("chatbot","That's It want to go further?");
@@ -378,6 +383,23 @@ veg(){
         this.createMessage("chatbot","Oh! Sorry I didnt found your ID");
         this.searchId();
       }
+      
+      
+      
+      
+      },error=>console.log(error));
+    
+
+        
+     
+  }
+
+
+}
+
+
+
+
       
     
 
