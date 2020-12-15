@@ -402,14 +402,9 @@ veg(){
         this.createMessage("chatbot","Oh! Sorry I didnt found your ID");
         this.searchId();
       }
-      
-      
-      
-      
-      },error=>console.log(error));
     
-
-        
+      },error=>console.log(error));
+       
      
   }
 
