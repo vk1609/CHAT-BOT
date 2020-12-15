@@ -16,13 +16,14 @@ export class ChatBotComponent implements OnInit {
 
   //tos store user information
   userInfo:any=[];
+  
 
   ngOnInit(): void {
+    
     this.createMessage("chatbot", "Hi! Please select one option to yum!.");
     this.createButton(this.options1,1);
     
   }
-  
 
   
   message(message:any){
@@ -128,6 +129,10 @@ if(message=='hi'||message=='hello'){
           this.deleteElement();
 
           this.createMessage("user","Veg Pizza🥕🍅");
+          this.createMessage('chatbot','So, Your are decided to eat healthy today😏');
+          this.createMessage('chatbot','Yo! some one is on diet😅');
+          this.createMessage('chatbot','Just kidding please select your pizza.');
+
           this.veg();
          console.log("for Veg Pizza🥕🍅");
 
@@ -140,6 +145,10 @@ if(message=='hi'||message=='hello'){
         this.deleteElement();
 
         this.createMessage("user","Non Veg Pizza🍗🥕🍅");
+        this.createMessage('chatbot','Yeah! it is my persnol suggestion too.');
+        this.createMessage('chatbot','Non-veg Pizzas are best here');
+          
+          this.createMessage('chatbot','Please select your pizza.');
         this.nonVeg();
 
         console.log("for Non Veg Pizza🍗🥕🍅"); 
@@ -153,8 +162,9 @@ pushToOrderList(i:number,type:string){
   for(let j=0;j<this.vegList.length;j++){
   this.deleteElement();
   }
-  var str='<br><b>'+this.vegList[i].name+'</b>';
+  var str=this.vegList[i].name;
   this.createMessage('user',str);
+  this.createMessage('chatbot','You had done a good choice💪');
   this.cart.push(this.vegList[i]);
 
 }
@@ -163,8 +173,9 @@ pushToOrderList(i:number,type:string){
       for(let j=0;j<this.nonVegList.length;j++){
   this.deleteElement();
   }
-  var str='<br><b>'+this.nonVegList[i].name+'</b>';
+  var str=this.nonVegList[i].name;
   this.createMessage('user',str);
+  this.createMessage('chatbot','Oh! Someone are about to eat a very tasty Pizzzzzzaaaa.....!🤪');
   this.cart.push(this.nonVegList[i]);
       console.log(this.cart);
     }
@@ -190,7 +201,7 @@ pushToOrderList(i:number,type:string){
             str+='</b><br> Total cost is: <b>'+totalcost+ '</b>';
             this.createMessage("chatbot",str);
             alert('Every thing is fine upto now.')
-             this.createMessage("chatbot","Enter Your details");
+             this.createMessage("chatbot","Can you provide your 'DETAILS' that we can you reach you fast");
              this.userdetailsInput();
 
         }
@@ -208,19 +219,27 @@ pushToOrderList(i:number,type:string){
     toRemove.remove();
      }
  vegList=[{
-  name:"Whole Wheat Veggie Pizza",description:"A whole wheat pizza.",cost:250},
-                   {name:"Tomato-Onion Phyllo Pizza",description:"A tomato onion pizza.",cost:275},
-                   {name:"Spinach and Artichoke Pizza",description:"A pizza for meet lovers ",cost:300}
+  name:"Whole Wheat Veggie Pizza",cost:250},
+                   {name:"Tomato-Onion Phyllo Pizza",cost:275},
+                   {name:"Spinach and Artichoke Pizza",cost:300},
+                   {name:"Margherita Pizza",cost:300},
+                   {name:"Double Cheese Margherita",cost:300},
+                   {name:"Mexican Green Wave",cost:300},
+                   {name:"Veg Extravaganza",cost:300}
 ];
 
 nonVegList=[{name:"Jerked Chicken Pizza",description:"A chicken Pizza",cost:300},
                      {name:"Meet Lover Pizza",description:"A pizza for meet lovers",cost:325},
+                     {name:"Barbeque Chicken Pizza",cost:300},
+                     {name:"Cheese And Barbeque Chicken Pizza",cost:300},
+                     {name:"Chicken Mexicana Pizza",cost:300},
+                     {name:"Chicken Golden Delight Pizza",cost:300},
                     {name:"Pepporonie Pizza",description:"A pepporonie pizza",cost:400}];
 veg(){
         
      for(let i=0;i<this.vegList.length;i++){
       var btn=document.createElement('button');
-      btn.innerHTML='<b>'+this.vegList[i].name+'</b><p>'+this.vegList[i].cost+'<br></p>';
+      btn.innerHTML=this.vegList[i].name;
       btn.id="user1";
       btn.addEventListener("click", (e:Event) => this.pushToOrderList(i,"veg"));
       btn.className="chatarea-inner btn";
@@ -231,7 +250,7 @@ veg(){
     nonVeg(){
       for(let i=0;i<this.nonVegList.length;i++){
       var btn=document.createElement('button');
-      btn.innerHTML='<b>'+this.nonVegList[i].name+'</b><br>  cost: '+this.nonVegList[i].cost+'<br></p>';
+      btn.innerHTML=this.nonVegList[i].name;
       btn.id="user1";
       btn.addEventListener("click", (e:Event) => this.pushToOrderList(i,"nonveg"));
       btn.className="chatarea-inner btn";
@@ -293,7 +312,7 @@ veg(){
     }
     else{
 
-    if(mobile.length!==10 || isNaN(notAnumber) || isValid ){
+    if(mobile.length!==10 || isNaN(notAnumber) ){
       this.deleteElementById("userDiv");
        alert('It was wrong, please enter again')
         this.createMessage("chatbot","Pleas enter correct mobile number");
@@ -333,12 +352,12 @@ veg(){
         },
         error => console.log(error));
           
-           //Insert order id and status into dabase
+//orderId  and status into database such that owner can update later.
            this.api.orderIntoDb(Number(orderId)," ").subscribe( data =>{
         },
         error => console.log(error));
 
-        this.createMessage("chatbot","That's It want to go further?")
+        this.createMessage("chatbot","That's it want to go further?")
         this.createButton(this.options1,1);
   }
     }
@@ -392,19 +411,6 @@ veg(){
 
         
      
-  }
-
-
-}
-
-
-
-
-      
-    
-
-        
-    },error=>console.log(error));
   }
 
 
